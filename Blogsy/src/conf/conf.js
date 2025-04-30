@@ -1,5 +1,5 @@
 const conf = {
-    appwrite_URL: String(import.met1.env.VITE_APPWRITE_URL),
+    appwrite_URL: String(import.meta.env.VITE_APPWRITE_URL),
     appwrite_projectID: String(import.meta.env.VITE_APPWRITE_PROJECT_ID),
     appwrite_databaseID: String(import.meta.env.VITE_APPWRITE_DATABASE_ID),
     appwrite_collectionID: String(import.meta.env.VITE_APPWRITE_COLLECTION_ID),
