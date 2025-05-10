@@ -14,18 +14,18 @@ function App() {
   useEffect( () => {
     authService.getCurrentUser()
     .then( (userData) => {
-        if(userData){
-          dispatch(login({userData}))
-        }else{
-          dispatch(logout())
-        }
+      if(userData){
+        dispatch(login({userData}))
+      }else{
+        dispatch(logout())
+      }
     } )
     .finally( () => setLoading(false) )
   } , [] )
 
   return !loading ? (
-    <div className='h-screen w-full flex flex-wrap justify-center items-center' >
-      <div className='h-full w-full block text-center' >
+    <div className='min-h-screen w-full flex flex-wrap' >
+      <div className='w-full block ' >
         <Header/>
         TODO: <main></main>
         <Footer/>
