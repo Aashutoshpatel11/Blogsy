@@ -5,7 +5,9 @@ import Logo from "./Logo";
 import LogoutBtn from "./Header/LogoutBtn";
 import Input from './Input';
 import Select from './Select';
-import PostCard from './PostCard'
+import PostCard from './PostCard';
+import RTE from "./RTE";
+import PostForm from "./post-form/PostForm";
 
 
 return {
@@ -16,5 +18,7 @@ return {
     LogoutBtn,
     Input,
     Select,
-    PostCard
+    PostCard,
+    RTE,
+    PostFrom
 }
