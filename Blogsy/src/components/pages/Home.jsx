@@ -13,7 +13,7 @@ function Home() {
             }
         }
         )
-    }, [posts])
+    }, [])
     
 
   if (posts.length === 0) {
