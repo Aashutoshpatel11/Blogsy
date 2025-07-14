@@ -1,43 +1,54 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import appwriteService from "../appwrite/config";
-import { Button, Container } from "../components";
+import service from "../../appwrite/config";
+import { Button, Container } from "../index";
 import parse from "html-react-parser";
 import { useSelector } from "react-redux";
 
 export default function Post() {
     const [post, setPost] = useState(null);
-    const { slug } = useParams();
+    const {slug} = useParams();
+    console.log(slug);
+    
     const navigate = useNavigate();
 
     const userData = useSelector((state) => state.auth.userData);
 
     const isAuthor = post && userData ? post.userId === userData.$id : false;
 
+
     useEffect(() => {
         if (slug) {
-            appwriteService.getPost(slug).then((post) => {
-                if (post) setPost(post);
-                else navigate("/");
+            service.getPost(slug).then((post) => {
+                if (post) {
+                    setPost(post)
+                }else navigate("/");
             });
         } else navigate("/");
     }, [slug, navigate]);
 
     const deletePost = () => {
-        appwriteService.deletePost(post.$id).then((status) => {
+        service.deletePost(post.$id).then((status) => {
             if (status) {
-                appwriteService.deleteFile(post.featuredImage);
+                service.deleteFile(post.featured_image);
                 navigate("/");
             }
         });
     };
+
+    if(post){
+        console.log(post);
+        console.log(service.getFilePreview(post.featured_image));
+        
+        
+    }
 
     return post ? (
         <div className="py-8">
             <Container>
                 <div className="w-full flex justify-center mb-4 relative border rounded-xl p-2">
                     <img
-                        src={appwriteService.getFilePreview(post.featuredImage)}
+                        src={service.getFilePreview(post.featured_image)}
                         alt={post.title}
                         className="rounded-xl"
                     />

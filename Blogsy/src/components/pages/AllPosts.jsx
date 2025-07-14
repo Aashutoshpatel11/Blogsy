@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import {Service} from "../../conf/conf"
+import service from '../../appwrite/config';
+import { PostCard, Container } from "../index";
 import { useEffect } from 'react'
 
 function AllPost() {
@@ -7,12 +8,15 @@ function AllPost() {
     const [posts, setPosts] = useState([])
 
     useEffect( () => {
-        Service.getPosts(),then( (posts) => {
+        service.getPosts().then( (posts) => {
             if(posts){
                 setPosts(posts.documents)
             }
         } )
     }, [] )
+
+    console.log(posts);
+    
 
   return (
     <div className='w-full py-8'>
@@ -29,4 +33,4 @@ function AllPost() {
   )
 }
 
-export default AllPost
+export default AllPost;

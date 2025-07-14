@@ -10,11 +10,11 @@ export class Service {
         this.client
         .setEndpoint(conf.appwrite_URL)
         .setProject(conf.appwrite_projectID);
-        databases = new Databases(this.client);
-        bucket = new Storage(this.client);
+        this.databases = new Databases(this.client);
+        this.bucket = new Storage(this.client);
     };
 
-    async createPost({title, slug, content, featuredImage, status, userid}){
+    async createPost({title, slug, content, featured_image, status, userid}){
         try {
             return await this.databases.createDocument(
                 conf.appwrite_databaseID,
@@ -23,7 +23,7 @@ export class Service {
                 {
                     title,
                     content,
-                    featuredImage,
+                    featured_image,
                     status, 
                     userid
                 }
@@ -70,9 +70,9 @@ export class Service {
 
     async getPost(slug){
         try {
-            await this.databases.getDocument(
-                conf.appwrite_collectionID,
+            return await this.databases.getDocument(
                 conf.appwrite_databaseID,
+                conf.appwrite_collectionID,
                 slug
             )
         } catch (error) {
@@ -80,7 +80,11 @@ export class Service {
         }
     }
 
+    
+
     async getPosts(queries=[Query.equal("status", "Active")]){
+        console.log("getting getposts");
+        
         try {
             return await this.databases.listDocuments(
                 conf.appwrite_databaseID,
@@ -120,17 +124,19 @@ export class Service {
         return false;
     }
 
-    async getFilePreview(fileID){
+    async getFilePreview(fileId){
+        
         try {
-            return await this.bucket.getFilePreview(
+            return await this.bucket.getFileView(
                 conf.appwrite_bucketID,
-                fileID
+                fileId
             )
         } catch (error) {
             console.log("AppWrite :: File preview :: error", error);
             return false;
         }
     }
+
 }
 
 const service = new Service()

@@ -1,10 +1,10 @@
 import React from 'react'
-import {container, PostFrom} from "../index"
+import {Container, PostForm} from "../index"
 
 function AddPost() {
   return (
     <container>
-        <PostFrom/>
+        <PostForm/>
     </container>
   )
 }

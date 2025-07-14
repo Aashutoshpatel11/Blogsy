@@ -1,5 +1,5 @@
 import React from 'react'
-import {Signup as SignupComponent} from "../Signup"
+import SignupComponent from "../Signup"
 
 function Signup() {
   return (
@@ -7,4 +7,4 @@ function Signup() {
   )
 }
 
-export default Signup
+export default Signup;

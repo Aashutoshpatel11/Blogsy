@@ -16,7 +16,7 @@ function Login() {
     const Login = async function (data) {
         setError("")
         try {
-            const session = await authService.login()
+            const session = await authService.login(data)
             if(session){
                 const userData = await authService.getCurrentUser()
                 if(userData){
@@ -49,7 +49,7 @@ function Login() {
                     Sign Up
                 </Link>
             </p>
-            {error && <p className="text-red-600 mt-8 text-center">{error}</p>}
+            {error && <p className="text-red-600 mt-8 text-center">{error?.message}</p>}
             <form onSubmit={ handleSubmit(Login) } className='mt-8' >
                 <div className='space-y-5' >
                     <Input 
@@ -59,7 +59,7 @@ function Login() {
                     {...register("email", {
                         required: true,
                         validate: {
-                        matchPatern: (value) => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value) ||
+                        Pattern: (value) => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value) ||
                         "Email address must be a valid address",
                     }
                     })}

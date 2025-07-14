@@ -2,15 +2,17 @@ import React, {useState, useEffect} from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import service from '../../appwrite/config'
 import {PostForm} from '../index'
+import Container from '../Container/Container'
 
 function EditPost() {
 
     const[post, setPost] = useState(null)
-    const naviagate = useNavigate()
+    const navigate = useNavigate()
     const {slug} = useParams()
+    console.log(slug)
 
     useEffect( () => {
-        Service.getPost(slug).then( (post) => {
+        service.getPost(slug).then( (post) => {
             if(post){
                 setPost(post)
             }else{

@@ -13,10 +13,14 @@ export class AuthService {
     }
 
     async createAccount({email, password, name}){
+        console.log(email,password,name);
+        
         try {
             const userAccount = await this.account.create( ID.unique(), email, password, name )
+            console.log(userAccount);
+            
             if( userAccount ){
-                return this.login(email , password)
+                return this.login({email, password})
             }else{
                 return userAccount;
             }
@@ -44,7 +48,7 @@ export class AuthService {
 
     async logout() {
         try {
-            return await this.account.deleteSession();
+            return await this.account.deleteSession('current');
         } catch (error) {
             console.log("Appwrite :: Logout :: error", error);
         }

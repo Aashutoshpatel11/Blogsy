@@ -5,6 +5,7 @@ import { Button, Input, RTE, Select } from "..";
 import appwriteService from "../../appwrite/config";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import service from "../../appwrite/config";
 
 export default function PostForm({ post }) {
     const { register, handleSubmit, watch, setValue, control, getValues } = useForm({
@@ -18,18 +19,20 @@ export default function PostForm({ post }) {
 
     const navigate = useNavigate();
     const userData = useSelector((state) => state.auth.userData);
+    console.log(userData);
+    
 
     const submit = async (data) => {
         if (post) {
             const file = data.image[0] ? await appwriteService.uploadFile(data.image[0]) : null;
 
             if (file) {
-                appwriteService.deleteFile(post.featuredImage);
+                appwriteService.deleteFile(post.featured_image);
             }
 
             const dbPost = await appwriteService.updatePost(post.$id, {
                 ...data,
-                featuredImage: file ? file.$id : undefined,
+                featured_image: file ? file.$id : undefined,
             });
 
             if (dbPost) {
@@ -40,8 +43,8 @@ export default function PostForm({ post }) {
 
             if (file) {
                 const fileId = file.$id;
-                data.featuredImage = fileId;
-                const dbPost = await appwriteService.createPost({ ...data, userId: userData.$id });
+                data.featured_image = fileId;
+                const dbPost = await appwriteService.createPost({ ...data, userid: userData.$id });
 
                 if (dbPost) {
                     navigate(`/post/${dbPost.$id}`);
@@ -91,8 +94,9 @@ export default function PostForm({ post }) {
                 />
                 <RTE label="Content :" name="content" control={control} defaultValue={getValues("content")} />
             </div>
-            <div className="w-1/3 px-2">
-                <Input
+            <div className="w-1/3 px-2 relative">
+                <div className="t-0" >
+                    <Input
                     label="Featured Image :"
                     type="file"
                     className="mb-4"
@@ -102,7 +106,7 @@ export default function PostForm({ post }) {
                 {post && (
                     <div className="w-full mb-4">
                         <img
-                            src={appwriteService.getFilePreview(post.featuredImage)}
+                            src={service.getFilePreview(post.featured_image)}
                             alt={post.title}
                             className="rounded-lg"
                         />
@@ -114,9 +118,12 @@ export default function PostForm({ post }) {
                     className="mb-4"
                     {...register("status", { required: true })}
                 />
-                <Button type="submit" bgColor={post ? "bg-green-500" : undefined} className="w-full">
+                </div>
+                <div className="b-0" >
+                    <Button type="submit" bgColor={post ? "bg-green-500" : undefined} className="w-full bg-green-500 text-white">
                     {post ? "Update" : "Submit"}
-                </Button>
+                    </Button>
+                </div>
             </div>
         </form>
     );

@@ -1,24 +1,30 @@
 import React, {useState} from 'react'
 import authService from '../appwrite/auth'
-import {Login as storeLogin} from '../store/authSlice'
+import { login as storeLogin} from '../store/authSlice'
 import { Input, Button, Logo } from './index'
 import { Link, useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { useDispatch } from 'react-redux'
 
-function signup() {
+function Signup() {
 
     const [error, setError] = useState("")
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const {register, handleSubmit} = useForm()
 
-    const Signup = async(data) => {
+    const signup = async(data) => {
         setError("")
+        console.log(`data in signup component: ${data.email}`);
+        
         try {
-            const session = await authService.createAccount()
+            const session = await authService.createAccount(data)
+            console.log(session);
+            
             if(session){
                 const userData = await authService.getCurrentUser()
+                console.log(userData);
+                
                 if(userData){
                     dispatch( storeLogin(userData) )
                     navigate('/')
@@ -26,6 +32,7 @@ function signup() {
             }
         } catch (error) {
             setError(error)
+            console.log(error);
         }
     }
 
@@ -47,7 +54,11 @@ function signup() {
                         Sign In
                     </Link>
                 </p>
-                {error && <p className="text-red-600 mt-8 text-center">{error}</p>}
+                {error && (
+                    <p className="text-red-600 mt-8 text-center">
+                        {error?.message || String(error)}
+                    </p>
+                )}
 
                 <form onSubmit={handleSubmit(signup)}>
                     <div className='space-y-5'>
@@ -55,7 +66,7 @@ function signup() {
                         label="Name"
                         placeholder="Enter your name"
                         type="text"
-                        {...register("eame", {
+                        {...register("name", {
                             required: true
                         })}
                         />
@@ -65,9 +76,10 @@ function signup() {
                         type="email"
                         {...register("email", {
                             required: true,
-                            validate:{
-                                matchPatern: (value) => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value) ||
-                                "Email address must be a valid address",
+                            validate: {
+                                pattern: (value) =>
+                                    /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value) ||
+                                    "Email address must be a valid address",
                             }
                         })}
                         />
@@ -91,4 +103,4 @@ function signup() {
   )
 }
 
-export default Signup
+export default Signup;
