@@ -122,7 +122,7 @@ export class Service {
             console.log("AppWrite :: Delete FIle :: error", error);
         }
         return false;
-    }
+    } 
 
     async getFilePreview(fileId){
         

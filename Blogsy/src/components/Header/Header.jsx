@@ -43,7 +43,7 @@ const Header = function () {
     ]
 
     return(
-        <header className='py-3 shadow bg-gray-500' >
+        <header className='rounded-b-3xl text-black py-3 bg-blue-300 backdrop-blur-2xl bg-opacity-10 border-b-4' >
             <Container>
                 <nav className='flex' >
                     <div className='mr-4' >
@@ -56,9 +56,10 @@ const Header = function () {
                         item.active? (
                             <li key={item.name} >
                                 <button
-                                className='inline-bock px-6 py-2 duration-200 hover:bg-blue-100 rounded-full'
+                                className='inline-bock px-6 py-2 duration-200 hover:bg-blue-400  hover:text-white rounded-full'
                                 onClick={ () => navigate(item.slug)}
-                                >{item.name}</button>
+                                >{item.name}
+                                </button>
                             </li>
                         ) : null
                         ) }

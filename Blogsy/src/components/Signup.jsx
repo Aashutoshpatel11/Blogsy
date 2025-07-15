@@ -5,6 +5,7 @@ import { Input, Button, Logo } from './index'
 import { Link, useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { useDispatch } from 'react-redux'
+import GradientText from './Animation/GradientText'
 
 function Signup() {
 
@@ -37,15 +38,25 @@ function Signup() {
     }
 
   return (
-     <div className="flex items-center justify-center">
-            <div className={`mx-auto w-full max-w-lg bg-gray-100 rounded-xl p-10 border border-black/10`}>
-            <div className="mb-2 flex justify-center">
+     <div className="flex items-center justify-center h-screen">
+            <div className={`mx-auto w-full max-w-lg bg-blue-300 border-b-4 rounded-xl p-10 text-black bg-opacity-10 backdrop-blur-3xl`}>
+            {/* <div className="mb-2 flex justify-center">
                     <span className="inline-block w-full max-w-[100px]">
                         <Logo width="100%" />
                     </span>
-                </div>
-                <h2 className="text-center text-2xl font-bold leading-tight">Sign up to create account</h2>
-                <p className="mt-2 text-center text-base text-black/60">
+                </div> */}
+                {/* <h2 className="text-center text-2xl font-bold leading-tight">
+                    Sign up to create account
+                </h2> */}
+                <GradientText
+                    colors={["#40ffaa", "#4079ff", "#40ffaa", "#4079ff", "#40ffaa"]}
+                    animationSpeed={1}
+                    showBorder={false}
+                    className="custom-class text-3xl bg-transparent"
+                    >
+                    Sign up to create account
+                </GradientText>
+                <p className="mt-2 text-center text-base text-black/50">
                     Already have an account?&nbsp;
                     <Link
                         to="/login"
@@ -91,10 +102,13 @@ function Signup() {
                             required: true
                         })}
                         />
-                        <Button
-                        type="submit"
-                        childern="Signup"
-                        />
+                        <div className='flex justify-end' >
+                            <Button
+                            className='bg-blue-500 hover:bg-blue-400 p-1 px-4 rounded-lg text-white hover:font-semibold ' 
+                            type="submit"
+                            children="Sign up"
+                            />
+                        </div>
                     </div>
                 </form>
             </div>

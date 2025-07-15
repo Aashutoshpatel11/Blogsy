@@ -75,7 +75,7 @@ export default function PostForm({ post }) {
     }, [watch, slugTransform, setValue]);
 
     return (
-        <form onSubmit={handleSubmit(submit)} className="flex flex-wrap">
+        <form onSubmit={handleSubmit(submit)} className="  flex h-full flex-wrap py-20 mb-10 text-black backdrop-blur-md ">
             <div className="w-2/3 px-2">
                 <Input
                     label="Title :"
@@ -94,7 +94,7 @@ export default function PostForm({ post }) {
                 />
                 <RTE label="Content :" name="content" control={control} defaultValue={getValues("content")} />
             </div>
-            <div className="w-1/3 px-2 relative">
+            <div className="w-1/3 px-2 relative flex flex-col justify-between">
                 <div className="t-0" >
                     <Input
                     label="Featured Image :"
@@ -114,13 +114,13 @@ export default function PostForm({ post }) {
                 )}
                 <Select
                     options={["active", "inactive"]}
-                    label="Status"
-                    className="mb-4"
+                    label="Status:"
+                    className="mb-4 text-black m-4 rounded-md pl-2 pr-4 "
                     {...register("status", { required: true })}
                 />
                 </div>
                 <div className="b-0" >
-                    <Button type="submit" bgColor={post ? "bg-green-500" : undefined} className="w-full bg-green-500 text-white">
+                    <Button type="submit" bgColor={post ? "bg-green-500" : undefined} className=" bg-green-500 hover:bg-green-400 hover:font-semibold text-white rounded-xl px-8 py-1">
                     {post ? "Update" : "Submit"}
                     </Button>
                 </div>

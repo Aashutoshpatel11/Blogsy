@@ -5,6 +5,7 @@ import { Input, Logo, Button } from './index'
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { useForm } from 'react-hook-form'
+import GradientText from './Animation/GradientText'
 
 function Login() {
 
@@ -31,16 +32,26 @@ function Login() {
 
   return (
     <div
-    className='flex items-center justify-center w-full'
+    className='flex items-center justify-center ws h-screen '
     >
-        <div className={`mx-auto w-full max-w-lg bg-gray-100 rounded-xl p-10 border border-black/10`}>
-            <div className="mb-2 flex justify-center">
+        <div className={`mx-auto w-full bg-blue-300 max-w-lg border-b-4 rounded-xl p-10 text-black/50 bg-opacity-10 backdrop-blur-2xl`}>
+            {/* <div className="mb-2 flex justify-center">
                 <span className="inline-block w-full max-w-[100px]">
                     <Logo width="100%" />
                 </span>
-            </div>
-            <h2 className="text-center text-2xl font-bold leading-tight">Sign in to your account</h2>
-            <p className="mt-2 text-center text-base text-black/60">
+            </div> */}
+            {/* <h2 className="text-center text-2xl font-bold leading-tight">
+                Sign in to your account
+            </h2> */}
+            <GradientText
+                colors={["#40ffaa", "#4079ff", "#40ffaa", "#4079ff", "#40ffaa"]}
+                animationSpeed={1}
+                showBorder={false}
+                className="custom-class text-3xl bg-transparent"
+                >
+                Sign in to your account
+            </GradientText>
+            <p className="mt-2 text-center text-base text-black/50">
                 Don&apos;t have any account?&nbsp;
                 <Link
                     to="/signup"
@@ -72,7 +83,8 @@ function Login() {
                         required: true
                     })}
                     />
-                    <button  
+                    <button
+                    className='bg-blue-500 hover:bg-blue-400 p-1 px-4 rounded-lg text-white '  
                     type='submit'
                     children="Login"
                     />

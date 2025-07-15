@@ -2,8 +2,7 @@ import React from 'react'
 
 function Logo({width='100px'}) {
   return (
-    <img src="../../../../logo.png" alt=""
-    width={width} />
+    <h2 className='text-blue-500 font-bold bg-transparent text-3xl ' >Blogsy</h2>
   )
 }
 

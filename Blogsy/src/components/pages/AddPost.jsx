@@ -3,9 +3,11 @@ import {Container, PostForm} from "../index"
 
 function AddPost() {
   return (
-    <container>
+    <div className='min-h-screen w-full backdrop-blur-3xl' >
+      <Container>
         <PostForm/>
-    </container>
+      </Container>
+    </div>
   )
 }
 
