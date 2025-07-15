@@ -1,9 +1,15 @@
 import React from 'react'
+import ShinyText from './Animation/ShinyText'
 
-function Logo({width='100px'}) {
+function Logo({ width = '100px' }) {
   return (
-    <h2 className='text-blue-500 font-bold bg-transparent text-3xl ' >Blogsy</h2>
-  )
+    <ShinyText
+      text="Blogsy"
+      disabled={false}
+      speed={3}
+      className="font-bold text-3xl"
+    />
+  );
 }
 
 export default Logo
