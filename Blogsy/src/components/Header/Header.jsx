@@ -35,11 +35,6 @@ const Header = function () {
             slug: '/add-post',
             active: authStatus
         },
-        {
-            name: 'Edit Post',
-            slug: `edit-post/${slug}`,
-            active: slug && authStatus
-        },
     ]
 
     return(

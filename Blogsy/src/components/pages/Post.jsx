@@ -15,7 +15,7 @@ export default function Post() {
 
     const userData = useSelector((state) => state.auth.userData);
 
-    const isAuthor = post && userData ? post.userId === userData.$id : false;
+    const isAuthor = post && userData ? post.userid === userData.$id : false;
 
 
     useEffect(() => {
@@ -40,41 +40,46 @@ export default function Post() {
     if(post){
         console.log(post);
         console.log(service.getFilePreview(post.featured_image));
-        
+        console.log(isAuthor, post.userid, userData.$id );
         
     }
 
     return post ? (
         // <SpotlightCard className="custom-spotlight-card backdrop-blur-md  bg-transparent" spotlightColor="rgba(140, 98, 55, .3)">
-            <div className="py-8 text-black backdrop-blur-md my-20 mb-44">
-                <Container>
-                    <div className="w-full flex justify-center mb-4 relative border rounded-xl p-2">
-                        <img
-                            src={service.getFilePreview(post.featured_image)}
-                            alt={post.title}
-                            className="rounded-xl"
-                        />
-
+            <div className="py-8 text-black backdrop-blur-md mt-20  min-h-screen flex flex-col justify-between">
+                    <div>
+                        <Container>
+                            <div>
+                                <div className="w-full flex justify-center mb-4 relative border rounded-xl p-2">
+                                    <img
+                                        src={service.getFilePreview(post.featured_image)}
+                                        alt={post.title}
+                                        className="rounded-xl"
+                                    />
+                                </div>
+                                <div className="w-full mb-6">
+                                    <h1 className="text-2xl font-bold">{post.title}</h1>
+                                </div>
+                                <div className="browser-css">
+                                    {parse(post.content)}
+                                </div>
+                            </div>
+                        </Container>
+                    </div>
+                    <div className="flex justify-end mr-10" >
                         {isAuthor && (
-                            <div className="absolute right-6 top-6">
+                            <div className="">
                                 <Link to={`/edit-post/${post.$id}`}>
-                                    <Button bgColor="bg-green-500" className="mr-3">
+                                    <Button bgColor="bg-green-500" className=" hover:bg-green-400 hover:font-semibold text-white mr-3 px-4 py-2 rounded-lg bg-green-500 ">
                                         Edit
                                     </Button>
                                 </Link>
-                                <Button bgColor="bg-red-500" onClick={deletePost}>
+                                <Button bgColor="bg-red-500" className="hover:bg-red-400 hover:font-semibold text-white mr-3 px-4 py-2 rounded-lg bg-red-500" onClick={deletePost}>
                                     Delete
                                 </Button>
                             </div>
                         )}
                     </div>
-                    <div className="w-full mb-6">
-                        <h1 className="text-2xl font-bold">{post.title}</h1>
-                    </div>
-                    <div className="browser-css">
-                        {parse(post.content)}
-                        </div>
-                </Container>
             </div>
         // </SpotlightCard>
     ) : null;
