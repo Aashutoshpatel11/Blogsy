@@ -43,7 +43,7 @@ const Header = function () {
                 <nav className='flex' >
                     <div className='mr-4' >
                         <Link to='/' >
-                            <Logo width='70px' />
+                            <Logo className={"text-lg md:text-3xl"} />
                         </Link>
                     </div>
                     <ul className='flex ml-auto' >
@@ -51,7 +51,7 @@ const Header = function () {
                         item.active? (
                             <li key={item.name} >
                                 <button
-                                className='inline-bock px-6 py-2 duration-200 hover:bg-blue-400  hover:text-white rounded-full'
+                                className=' text-xs sm:text-base inline-bock px-6 py-2 duration-200 hover:bg-blue-400  hover:text-white rounded-full'
                                 onClick={ () => navigate(item.slug)}
                                 >{item.name}
                                 </button>
