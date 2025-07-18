@@ -4,16 +4,16 @@ import Logo from "../Logo";
 
 function Footer() {
   return (
-    <section className="relative overflow-hidden py-10 rounded-t-3xl text-black bg-blue-300 backdrop-blur-2xl bg-opacity-10 border-t-4">
+    <section className="relative overflow-hidden py-10 rounded-t-3xl text-black/60 bg-blue-300 backdrop-blur-2xl bg-opacity-10 border-t-4">
             <div className="relative z-10 mx-auto max-w-7xl px-4">
                 <div className="-m-6 flex flex-wrap">
                     <div className="w-full p-6 md:w-1/2 lg:w-4/12">
                         <div className="flex h-full flex-col justify-between">
                             <div className="mb-4 inline-flex items-center">
-                                <Logo className="" />
+                                <Logo className="text-lg md:text-3xl" />
                             </div>
                             <div>
-                                <p className="text-sm">
+                                <p className="text-xs sm:text-sm">
                                     &copy; Copyright 2023. All Rights Reserved by Aashutosh Patel.
                                 </p>
                             </div>
@@ -27,7 +27,7 @@ function Footer() {
                             <ul>
                                 <li className="mb-4">
                                     <Link
-                                        className=" text-base font-medium hover:underline hover:text-blue-500 underline-offset-1"
+                                        className=" text-xs sm:text-base  hover:underline hover:text-blue-500 underline-offset-1"
                                         to="/"
                                     >
                                         Features
@@ -35,7 +35,7 @@ function Footer() {
                                 </li>
                                 <li className="mb-4">
                                     <Link
-                                        className=" text-base font-medium hover:underline hover:text-blue-500 underline-offset-1"
+                                        className=" text-xs sm:text-base  hover:underline hover:text-blue-500 underline-offset-1"
                                         to="/"
                                     >
                                         Pricing
@@ -43,7 +43,7 @@ function Footer() {
                                 </li>
                                 <li className="mb-4">
                                     <Link
-                                        className=" text-base font-medium hover:underline hover:text-blue-500 underline-offset-1"
+                                        className=" text-xs sm:text-base  hover:underline hover:text-blue-500 underline-offset-1"
                                         to="/"
                                     >
                                         Affiliate Program
@@ -51,7 +51,7 @@ function Footer() {
                                 </li>
                                 <li>
                                     <Link
-                                        className=" text-base font-medium hover:underline hover:text-blue-500 underline-offset-1"
+                                        className=" text-xs sm:text-base  hover:underline hover:text-blue-500 underline-offset-1"
                                         to="/"
                                     >
                                         Press Kit
@@ -68,7 +68,7 @@ function Footer() {
                             <ul>
                                 <li className="mb-4">
                                     <Link
-                                        className=" text-base font-medium hover:underline hover:text-blue-500 underline-offset-1"
+                                        className=" text-xs sm:text-base  hover:underline hover:text-blue-500 underline-offset-1"
                                         to="/"
                                     >
                                         Account
@@ -76,7 +76,7 @@ function Footer() {
                                 </li>
                                 <li className="mb-4">
                                     <Link
-                                        className=" text-base font-medium hover:underline hover:text-blue-500 underline-offset-1"
+                                        className=" text-xs sm:text-base  hover:underline hover:text-blue-500 underline-offset-1"
                                         to="/"
                                     >
                                         Help
@@ -84,7 +84,7 @@ function Footer() {
                                 </li>
                                 <li className="mb-4">
                                     <Link
-                                        className=" text-base font-medium hover:underline hover:text-blue-500 underline-offset-1"
+                                        className=" text-xs sm:text-base  hover:underline hover:text-blue-500 underline-offset-1"
                                         to="/"
                                     >
                                         Contact Us
@@ -92,7 +92,7 @@ function Footer() {
                                 </li>
                                 <li>
                                     <Link
-                                        className=" text-base font-medium hover:underline hover:text-blue-500 underline-offset-1"
+                                        className=" text-xs sm:text-base  hover:underline hover:text-blue-500 underline-offset-1"
                                         to="/"
                                     >
                                         Customer Support
@@ -109,7 +109,7 @@ function Footer() {
                             <ul>
                                 <li className="mb-4">
                                     <Link
-                                        className=" text-base font-medium hover:underline hover:text-blue-500 underline-offset-1"
+                                        className=" text-xs sm:text-base  hover:underline hover:text-blue-500 underline-offset-1"
                                         to="/"
                                     >
                                         Terms &amp; Conditions
@@ -117,7 +117,7 @@ function Footer() {
                                 </li>
                                 <li className="mb-4">
                                     <Link
-                                        className=" text-base font-medium hover:underline hover:text-blue-500 underline-offset-1"
+                                        className=" text-xs sm:text-base  hover:underline hover:text-blue-500 underline-offset-1"
                                         to="/"
                                     >
                                         Privacy Policy
@@ -125,7 +125,7 @@ function Footer() {
                                 </li>
                                 <li>
                                     <Link
-                                        className=" text-base font-medium hover:underline hover:text-blue-500 underline-offset-1"
+                                        className=" text-xs sm:text-base  hover:underline hover:text-blue-500 underline-offset-1"
                                         to="/"
                                     >
                                         Licensing
@@ -145,7 +145,7 @@ function Footer() {
                                         href="https://github.com/Aashutoshpatel11"  // <-- replace with your GitHub URL
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="text-base font-medium hover:underline hover:text-blue-500 underline-offset-1"
+                                        className="text-xs sm:text-base  hover:underline hover:text-blue-500 underline-offset-1"
                                     >
                                         GitHub
                                     </a>
@@ -155,7 +155,7 @@ function Footer() {
                                         href="https://www.linkedin.com/in/aashutosh-patel-a318982b2/"  // <-- replace with your GitHub URL
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="text-base font-medium hover:underline hover:text-blue-500 underline-offset-1"
+                                        className="text-xs sm:text-base  hover:underline hover:text-blue-500 underline-offset-1"
                                     >
                                         LinkedIN
                                     </a>

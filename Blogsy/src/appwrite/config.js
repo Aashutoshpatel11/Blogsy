@@ -1,5 +1,6 @@
 import conf from "../conf/conf"
 import { Client, Account, ID, Databases, Query, Storage} from "appwrite";
+import authService from "./auth";
 
 export class Service {
     client = new Client();
@@ -15,6 +16,8 @@ export class Service {
     };
 
     async createPost({title, slug, content, featured_image, status, userid}){
+        const username = await authService.getCurrentUser()
+
         try {
             return await this.databases.createDocument(
                 conf.appwrite_databaseID,
@@ -25,7 +28,8 @@ export class Service {
                     content,
                     featured_image,
                     status, 
-                    userid
+                    userid,
+                    username: username.name
                 }
             )
         } catch (error) {
@@ -83,7 +87,6 @@ export class Service {
     
 
     async getPosts(queries=[Query.equal("status", "Active")]){
-        console.log("getting getposts");
         
         try {
             return await this.databases.listDocuments(
@@ -135,7 +138,6 @@ export class Service {
                 conf.appwrite_bucketID,
                 fileId
             )
-            console.log(result);
             return result;
             
         } catch (error) {

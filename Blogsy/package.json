@@ -13,6 +13,7 @@
     "@reduxjs/toolkit": "^2.7.0",
     "@tinymce/tinymce-react": "^6.1.0",
     "appwrite": "^17.0.2",
+    "date-fns": "^4.1.0",
     "gsap": "^3.13.0",
     "html-react-parser": "^5.2.5",
     "ogl": "^1.0.11",

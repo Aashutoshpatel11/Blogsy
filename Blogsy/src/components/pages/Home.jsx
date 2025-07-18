@@ -19,10 +19,6 @@ function Home() {
         )
     }, [])
     
-    const handleAnimationComplete = () => {
-        console.log('All letters have animated!');
-    };
-    
 
   if (posts.length === 0) {
         return (
@@ -46,7 +42,7 @@ function Home() {
                                 threshold={0.1}
                                 rootMargin="-100px"
                                 textAlign="center"
-                                onLetterAnimationComplete={handleAnimationComplete}
+                                // onLetterAnimationComplete={}
                                 />
                             </div>
                         </div>
