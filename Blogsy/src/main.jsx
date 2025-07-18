@@ -14,6 +14,7 @@ import Signup from './components/pages/Signup.jsx'
 import EditPost from "./components/pages/EditPost.jsx";
 import Post from "./components/pages/Post.jsx";
 import MyPosts from "./components/pages/MyPosts.jsx";
+import Profile from './components/pages/Profile.jsx'
 
 const router = createBrowserRouter([
   {
@@ -43,7 +44,7 @@ const router = createBrowserRouter([
         {
             path: "my-posts",
             element: (
-                <AuthLayout authentication>
+                <AuthLayout authentication >
                     {" "}
                     <MyPosts />
                 </AuthLayout>
@@ -71,6 +72,15 @@ const router = createBrowserRouter([
             path: "post/:slug",
             element: <Post />,
         },
+        {
+            path: "profile/:slug",
+            element: (
+                <AuthLayout authentication>
+                    {""}
+                    <Profile />
+                </AuthLayout>
+            )
+        }
     ],
 },
 ])

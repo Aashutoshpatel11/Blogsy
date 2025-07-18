@@ -1,13 +1,30 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Container, LogoutBtn, Logo } from "../index"
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { useNavigate, Link } from "react-router-dom";
+import service from "../../appwrite/auth";
 
 const Header = function () {
     const authStatus = useSelector( (state) => (state.auth.status) )
     const navigate = useNavigate()
     const {slug} = useParams()
+    const[user, setUser] = useState("");
+    console.log(slug);
+    
+
+    useEffect( () => {
+        service.getCurrentUser()
+        .then( (res) => {if(res) setUser(res)} )
+        .catch( (error) => {
+            console.log("Header::profile::getcurrentUser::error",error);
+            
+        } )
+    }, [authStatus] )
+
+    const handleOnClick = () => {
+        navigate(`/profile/${user.email}`);
+    }
 
     let navItems = [
         {
@@ -58,10 +75,17 @@ const Header = function () {
                             </li>
                         ) : null
                         ) }
-                        {authStatus && (
+                        {authStatus && slug!=user?.email && (
                             <li>
                                 <LogoutBtn/>
                             </li>
+                        )}
+                        {authStatus && (
+                            <button 
+                            onClick={ () => handleOnClick() }
+                            className='bg-blue-300 rounded-full w-10 h-10 ml-4 flex justify-center items-center text-black/50 font-semibold text-2xl font-mono bg-gradient-to-r from-[#e0aef8]  to-[#8cacf6]' >
+                            {user?.name?.[0]?.toUpperCase()}
+                            </button>
                         )}
                     </ul>
                 </nav>
