@@ -36,7 +36,7 @@ function Home() {
                                 </h1> */}
                                 <SplitText
                                 text="Login To See Content"
-                                className="text-4xl font-semibold text-center text-black/50"
+                                className="text-2xl sm:text-4xl font-semibold text-center text-black/50"
                                 delay={100}
                                 duration={0.6}
                                 ease="power3.out"
