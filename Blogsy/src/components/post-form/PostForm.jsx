@@ -12,6 +12,7 @@ export default function PostForm({ post }) {
         defaultValues: {
             title: post?.title || "",
             slug: post?.$id || "",
+            tagline: post?.tagline || "",
             content: post?.content || "",
             status: post?.status || "active",
         },
@@ -25,6 +26,8 @@ export default function PostForm({ post }) {
     const submit = async (data) => {
         if (post) {
             const file = data.image[0] ? await appwriteService.uploadFile(data.image[0]) : null;
+            console.log(file);
+            
 
             if (file) {
                 appwriteService.deleteFile(post.featured_image);
@@ -91,6 +94,12 @@ export default function PostForm({ post }) {
                     onInput={(e) => {
                         setValue("slug", slugTransform(e.currentTarget.value), { shouldValidate: true });
                     }}
+                />
+                <Input
+                    label="tagline :"
+                    placeholder="tagline"
+                    className="mb-4"
+                    {...register("tagline", { required: true })}
                 />
                 <RTE label="Content :" name="content" control={control} defaultValue={getValues("content")} />
             </div>

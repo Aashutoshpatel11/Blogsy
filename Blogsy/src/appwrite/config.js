@@ -15,7 +15,7 @@ export class Service {
         this.bucket = new Storage(this.client);
     };
 
-    async createPost({title, slug, content, featured_image, status, userid}){
+    async createPost({title, slug, tagline, content, featured_image, status, userid}){
         const username = await authService.getCurrentUser()
 
         try {
@@ -25,6 +25,7 @@ export class Service {
                 slug,
                 {
                     title,
+                    tagline,
                     content,
                     featured_image,
                     status, 
@@ -38,7 +39,7 @@ export class Service {
         }
     }
     
-    async updatePost(slug, {title, content, featuredImage, status, userId}){
+    async updatePost(slug, {title, tagline, content, featuredImage, status, userId}){
         try {
             return await this.databases.updateDocument(
                 conf.appwrite_databaseID,
@@ -46,6 +47,7 @@ export class Service {
                 slug,
                 {
                     title,
+                    tagline,
                     content,
                     featuredImage,
                     status,

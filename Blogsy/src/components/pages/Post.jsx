@@ -54,13 +54,16 @@ export default function Post() {
                         <Container>
                             <div>
                                 <div className="w-full mb-6 flex justify-center items-center">
-                                    <h1 className="text-2xl font-bold ">{post.title}</h1>
+                                    <h1 className="text-5xl font-bold text-black/60 ">{post.title}</h1>
                                 </div>
-                                <div className="w-full flex justify-center mb-4 relative border rounded-xl p-2">
+                                <div 
+                                className="w-full flex justify-center mb-4 relative border rounded-xl p-2 "
+                                style={{ backgroundImage: `url(${imageURL})` }}
+                                >
                                     <img
                                         src={imageURL}
                                         alt={post.title}
-                                        className="rounded-xl"
+                                        className="rounded-xl h-96 bg-cover"
                                     />
                                 </div>
                                 <div className="w-full mb-6">

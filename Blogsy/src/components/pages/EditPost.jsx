@@ -22,7 +22,7 @@ function EditPost() {
     }, [slug, navigate] )
 
   return post ? (
-    <div className='min-h-screen w-full w-full backdrop-blur-3xl'>
+    <div className='min-h-screen w-full backdrop-blur-3xl'>
         <Container >
             <PostForm post={post} />
         </Container>

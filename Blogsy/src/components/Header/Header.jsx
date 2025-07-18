@@ -10,7 +10,6 @@ const Header = function () {
     const navigate = useNavigate()
     const {slug} = useParams()
     const[user, setUser] = useState("");
-    console.log(slug);
     
 
     useEffect( () => {
@@ -75,11 +74,11 @@ const Header = function () {
                             </li>
                         ) : null
                         ) }
-                        {authStatus && slug!=user?.email && (
+                        {/* {authStatus && slug!=user?.email && (
                             <li>
                                 <LogoutBtn/>
                             </li>
-                        )}
+                        )} */}
                         {authStatus && (
                             <button 
                             onClick={ () => handleOnClick() }
