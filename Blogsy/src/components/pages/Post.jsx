@@ -58,12 +58,11 @@ export default function Post() {
                                 </div>
                                 <div 
                                 className="w-full flex justify-center mb-4 relative border rounded-xl p-2 "
-                                style={{ backgroundImage: `url(${imageURL})` }}
                                 >
                                     <img
                                         src={imageURL}
                                         alt={post.title}
-                                        className="rounded-xl h-96 bg-cover"
+                                        className="rounded-xl"
                                     />
                                 </div>
                                 <div className="w-full mb-6">
