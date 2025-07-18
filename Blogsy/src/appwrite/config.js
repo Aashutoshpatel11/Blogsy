@@ -127,10 +127,17 @@ export class Service {
     async getFilePreview(fileId){
         
         try {
-            return await this.bucket.getFileView(
+            // return await this.bucket.getFilePreview(
+            //     conf.appwrite_bucketID,
+            //     fileId
+            // );
+            const result = await this.bucket.getFileView(
                 conf.appwrite_bucketID,
                 fileId
             )
+            console.log(result);
+            return result;
+            
         } catch (error) {
             console.log("AppWrite :: File preview :: error", error);
             return false;

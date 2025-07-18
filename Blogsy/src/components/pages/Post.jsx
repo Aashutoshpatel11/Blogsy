@@ -8,25 +8,34 @@ import SpotlightCard from "../Animation/SpotLightCard";
 
 export default function Post() {
     const [post, setPost] = useState(null);
+    const [imageURL, setImageURL] = useState(null);
     const {slug} = useParams();
-    console.log(slug);
-    
     const navigate = useNavigate();
-
     const userData = useSelector((state) => state.auth.userData);
-
     const isAuthor = post && userData ? post.userid === userData.$id : false;
 
 
     useEffect(() => {
         if (slug) {
-            service.getPost(slug).then((post) => {
+            service.getPost(slug)
+            .then((post) => {
                 if (post) {
                     setPost(post)
                 }else navigate("/");
             });
         } else navigate("/");
     }, [slug, navigate]);
+
+    useEffect( () => {
+        if(post){
+            service.getFilePreview(post.featured_image)
+            .then( (res) => setImageURL(res) )
+            .catch( (error) => {
+                console.log(error);
+                
+            } )
+        }
+    }, [post] )
 
     const deletePost = () => {
         service.deletePost(post.$id).then((status) => {
@@ -37,12 +46,6 @@ export default function Post() {
         });
     };
 
-    if(post){
-        console.log(post);
-        console.log(service.getFilePreview(post.featured_image));
-        console.log(isAuthor, post.userid, userData.$id );
-        
-    }
 
     return post ? (
         // <SpotlightCard className="custom-spotlight-card backdrop-blur-md  bg-transparent" spotlightColor="rgba(140, 98, 55, .3)">
@@ -50,15 +53,18 @@ export default function Post() {
                     <div>
                         <Container>
                             <div>
+                                <div className="w-full mb-6 flex justify-center items-center">
+                                    <h1 className="text-2xl font-bold ">{post.title}</h1>
+                                </div>
                                 <div className="w-full flex justify-center mb-4 relative border rounded-xl p-2">
                                     <img
-                                        src={service.getFilePreview(post.featured_image)}
+                                        src={imageURL}
                                         alt={post.title}
                                         className="rounded-xl"
                                     />
                                 </div>
                                 <div className="w-full mb-6">
-                                    <h1 className="text-2xl font-bold">{post.title}</h1>
+                                    <h1 className="text-xl font-bold">{post.title}</h1>
                                 </div>
                                 <div className="browser-css">
                                     {parse(post.content)}
