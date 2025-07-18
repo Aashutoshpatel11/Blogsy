@@ -2,8 +2,9 @@ import React, { useState } from 'react'
 import service from '../../appwrite/config';
 import { PostCard, Container } from "../index";
 import { useEffect } from 'react'
+import { useSelector } from 'react-redux';
 
-function AllPost() {
+function MyPosts() {
 
     const [posts, setPosts] = useState([])
 
@@ -15,14 +16,18 @@ function AllPost() {
         } )
     }, [] )
 
-    console.log(posts);
+    const userData = useSelector((state) => state.auth.userData);
+    console.log(userData);
+    // const user_id = userData.$id;
     
 
   return (
     <div className='w-full min-h-screen py-8'>
         <Container>
             <div className='flex flex-wrap'>
-                {posts.map((post) => (
+                {posts
+                .filter( post => post.userid === userData.$id   )
+                .map((post) => (
                     <div key={post.$id} className='p-2 w-1/4'>
                         <PostCard {...post} />
                     </div>
@@ -33,4 +38,4 @@ function AllPost() {
   )
 }
 
-export default AllPost;
+export default MyPosts;

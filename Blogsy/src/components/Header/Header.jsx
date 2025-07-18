@@ -26,8 +26,8 @@ const Header = function () {
             active: !authStatus
         },
         {
-            name: 'All Post',
-            slug: '/all-posts',
+            name: 'My Post',
+            slug: '/my-posts',
             active: authStatus
         },
         {
