@@ -13,8 +13,11 @@ export default function Post() {
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
     const userData = useSelector((state) => state.auth.userData);
-    const isAuthor = post && userData ? post.userid === userData.$id : false;
+    let isAuthor = post && userData ? post.userid === userData.$id : false;
 
+    // useEffect( () => {
+    //     isAuthor = post && userData ? post.userid === userData.$id : false;
+    // }, [post] )
 
     useEffect(() => {
         if (slug) {
@@ -34,7 +37,6 @@ export default function Post() {
             .then( (res) => setImageURL(res) )
             .catch( (error) => {
                 console.log(error);
-                
             } )
         }
     }, [post] )

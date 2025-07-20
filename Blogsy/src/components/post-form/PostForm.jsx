@@ -10,6 +10,7 @@ import service from "../../appwrite/config";
 export default function PostForm({ post }) {
 
     const[isNewPost, setIsNewPost] = useState(true);
+    conat[imageuRL, setImageURL] = useState("")
     useEffect( () => {
         if(post) setIsNewPost(false);
     }, [post] )
@@ -26,6 +27,21 @@ export default function PostForm({ post }) {
 
     const navigate = useNavigate();
     const userData = useSelector((state) => state.auth.userData);
+
+    useEffect( () => {
+        if(post){
+            service.getFilePreview(post.featured_image)
+            .then( (res) => {
+                console.log(post.featured_image);
+                setImageURL(res)
+                console.log(imageuRL);
+                console.log("here");
+            } )
+            .catch( (error) => {
+                console.log("EDII POST:: getFilePreview:: error",error);
+            } )
+        }
+    }, [] )
     
 
     const submit = async (data) => {
@@ -121,7 +137,7 @@ export default function PostForm({ post }) {
                 {post && (
                     <div className="w-full mb-4">
                         <img
-                            src={service.getFilePreview(post.featured_image)}
+                            src={imageuRL}
                             alt={post.title}
                             className="rounded-lg"
                         />

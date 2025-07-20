@@ -9,11 +9,15 @@ function MyPosts() {
     const [posts, setPosts] = useState([])
 
     useEffect( () => {
-        service.getPosts().then( (posts) => {
+        service.getPosts()
+        .then( (posts) => {
             if(posts){
                 setPosts(posts.documents);
                 setLoading(false);
             }
+        } )
+        .catch( errpr => {
+            console.log(error);
         } )
     }, [] )
 
