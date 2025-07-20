@@ -54,10 +54,10 @@ const Header = function () {
     ]
 
     return(
-        <header className='rounded-b-3xl text-black py-3 bg-blue-300 backdrop-blur-2xl bg-opacity-10 border-b-4 w-screen' >
+        <header className='rounded-b-3xl px-0 py-2 text-black  bg-blue-300 backdrop-blur-2xl bg-opacity-10 border-b-4 w-screen' >
             <Container>
                 <nav className='flex' >
-                    <div className='mr-4' >
+                    <div className='' >
                         <Link to='/' >
                             <Logo className={"text-lg md:text-3xl"} />
                         </Link>
@@ -67,25 +67,25 @@ const Header = function () {
                         item.active? (
                             <li key={item.name} >
                                 <button
-                                className=' text-xs sm:text-base inline-bock py-2 px-2 sm:px-6 sm:py-2 duration-200 hover:bg-blue-400  hover:text-white rounded-full'
+                                className=' text-xs sm:text-sm inline-bock py-2 px-2 sm:px-6 sm:py-2 duration-200 hover:bg-blue-400  hover:text-white rounded-full'
                                 onClick={ () => navigate(item.slug)}
                                 >{item.name}
                                 </button>
                             </li>
                         ) : null
                         ) }
-                        {/* {authStatus && slug!=user?.email && (
-                            <li>
-                                <LogoutBtn/>
-                            </li>
-                        )} */}
                         {authStatus && (
-                            <button 
-                            onClick={ () => handleOnClick() }
-                            className='bg-white  rounded-full w-10 h-10 ml-4 flex justify-center items-center text-black/40 font-semibold text-2xl font-mono border-2 border-t-red-500 border-r-blue-500 border-b-green-500 border-l-yellow-500' >
-                            {user?.name?.[0]?.toUpperCase()}
-                            </button>
+                            <div className="flex justify-center items-center" >
+                                <button 
+                                onClick={ () => handleOnClick() }
+                                className='bg-white  rounded-full w-8 h-8 ml-4 flex justify-center items-center text-black/40 font-semibold text-2xl font-mono border-2 border-t-red-500 border-r-blue-500 border-b-green-500 border-l-yellow-500' >
+                                {user?.name?.[0]?.toUpperCase()}
+                                </button>
+                            </div>
                         )}
+                        {/* <div className="flex justify-center ml-6 p-1 py-0 items-center" >
+                            <ThemeBtn />
+                        </div> */}
                     </ul>
                 </nav>
             </Container>

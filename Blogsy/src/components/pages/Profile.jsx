@@ -20,8 +20,6 @@ function Profile (){
         } )
     } , [] )
 
-    console.log(user);
-
     return loading? (
         <Loading /> 
     ) : (
