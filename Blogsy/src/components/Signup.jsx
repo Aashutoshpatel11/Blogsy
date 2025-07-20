@@ -6,15 +6,18 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { useDispatch } from 'react-redux'
 import GradientText from './Animation/GradientText'
+import {LoadingBtn} from "./index"
 
 function Signup() {
 
     const [error, setError] = useState("")
+    const [loading, setLoading] = useState(false)
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const {register, handleSubmit} = useForm()
 
     const signup = async(data) => {
+        setLoading(true);
         setError("")
         console.log(`data in signup component: ${data.email}`);
         
@@ -28,6 +31,7 @@ function Signup() {
                 
                 if(userData){
                     dispatch( storeLogin(userData) )
+                    setLoading(false);
                     navigate('/')
                 }
             }
@@ -40,14 +44,6 @@ function Signup() {
   return (
      <div className="flex items-center justify-center h-screen">
             <div className={`mx-auto w-full max-w-lg bg-blue-300 border-b-4 rounded-xl p-10 text-black bg-opacity-10 backdrop-blur-3xl`}>
-            {/* <div className="mb-2 flex justify-center">
-                    <span className="inline-block w-full max-w-[100px]">
-                        <Logo width="100%" />
-                    </span>
-                </div> */}
-                {/* <h2 className="text-center text-2xl font-bold leading-tight">
-                    Sign up to create account
-                </h2> */}
                 <GradientText
                     colors={["#40ffaa", "#4079ff", "#40ffaa", "#4079ff", "#40ffaa"]}
                     animationSpeed={1}
@@ -107,7 +103,9 @@ function Signup() {
                             className='bg-blue-500 hover:bg-blue-400 p-1 px-4 rounded-lg text-white hover:font-semibold ' 
                             type="submit"
                             children="Sign up"
-                            />
+                            >
+                            {loading? <LoadingBtn /> : "sign up" }
+                            </Button>
                         </div>
                     </div>
                 </form>

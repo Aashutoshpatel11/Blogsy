@@ -33,7 +33,7 @@ function App() {
                 distance={0}
                 enableMouseInteraction={true}
                 />
-            <div className='w-full block ' >
+            <div className='w-full block scroll-smooth ' >
                 <Header/>
                 <main>
                     <Outlet/>

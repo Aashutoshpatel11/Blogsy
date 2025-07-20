@@ -93,7 +93,7 @@
 import React, { useState } from 'react'
 import authService from '../appwrite/auth'
 import { login as storeLogin } from '../store/authSlice'
-import { Input, Logo, Button } from './index'
+import { Input, Logo, Button, LoadingBtn } from './index'
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { useForm } from 'react-hook-form'
@@ -179,10 +179,7 @@ function Login() {
                             type="submit"
                             disabled={loading}
                         >
-                            {loading ?  <div className=' w-full flex justify-center  font-bold text-black/50 ' >
-                                <div className=' w-6 h-6 border-4 animate-spin border-t-blue-500 rounded-full' >
-                                </div>
-                            </div> : "Login"}
+                            {loading ?  <LoadingBtn/> : "Login"}
                         </button>
                     </div>
                 </form>

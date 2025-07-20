@@ -12,6 +12,7 @@ import PostForm from "./post-form/PostForm";
 import AuthLayout from "../components/AuthLayout"
 import Login from "../components/Login"
 import Loading from "./Loading"
+import LoadingBtn from "./LoadingBtn";
 
 export {
     Header,
@@ -27,5 +28,6 @@ export {
     PostForm,
     AuthLayout,
     Login,
-    Loading
+    Loading,
+    LoadingBtn
 }

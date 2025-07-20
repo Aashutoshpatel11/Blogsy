@@ -6,11 +6,13 @@ import appwriteService from "../../appwrite/config";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import service from "../../appwrite/config";
+import {LoadingBtn} from "../index";
 
 export default function PostForm({ post }) {
 
     const[isNewPost, setIsNewPost] = useState(true);
     const[imageuRL, setImageURL] = useState("")
+    const[loading, setLoading] = useState(false);
     useEffect( () => {
         if(post) setIsNewPost(false);
     }, [post] )
@@ -32,10 +34,7 @@ export default function PostForm({ post }) {
         if(post){
             service.getFilePreview(post.featured_image)
             .then( (res) => {
-                console.log(post.featured_image);
                 setImageURL(res)
-                console.log(imageuRL);
-                console.log("here");
             } )
             .catch( (error) => {
                 console.log("EDII POST:: getFilePreview:: error",error);
@@ -45,6 +44,7 @@ export default function PostForm({ post }) {
     
 
     const submit = async (data) => {
+        setLoading(true)
         if (post?.$id) {
             const file = data.image[0] ? await appwriteService.uploadFile(data.image[0]) : null;
             if (file) {
@@ -57,6 +57,7 @@ export default function PostForm({ post }) {
             });
 
             if (dbPost) {
+                setLoading(false)
                 navigate(`/post/${dbPost.$id}`);
             }
         } else {
@@ -68,6 +69,7 @@ export default function PostForm({ post }) {
                 const dbPost = await appwriteService.createPost({ ...data, userid: userData.$id });
 
                 if (dbPost) {
+                    setLoading(false);
                     navigate(`/post/${dbPost.$id}`);
                 }
             }
@@ -158,7 +160,7 @@ export default function PostForm({ post }) {
                         ✨Generate with AI
                     </button>)}
                     <Button type="submit" bgColor={post ? "bg-green-500" : undefined} className=" bg-green-500 hover:bg-green-400 hover:font-semibold text-white rounded-xl px-8 py-1">
-                    {post ? "Update" : "Submit"}
+                    { loading? <LoadingBtn /> :  post ? "Update" : "Submit"   }
                     </Button>
                 </div>
             </div>
