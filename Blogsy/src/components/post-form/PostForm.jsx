@@ -10,7 +10,7 @@ import service from "../../appwrite/config";
 export default function PostForm({ post }) {
 
     const[isNewPost, setIsNewPost] = useState(true);
-    conat[imageuRL, setImageURL] = useState("")
+    const[imageuRL, setImageURL] = useState("")
     useEffect( () => {
         if(post) setIsNewPost(false);
     }, [post] )

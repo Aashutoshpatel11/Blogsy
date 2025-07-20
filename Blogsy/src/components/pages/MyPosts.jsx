@@ -7,6 +7,9 @@ import { useSelector } from 'react-redux';
 function MyPosts() {
     const [loading, setLoading] = useState(true)
     const [posts, setPosts] = useState([])
+    let userData = useSelector((state) => state.auth.userData);
+    // console.log("UserData",userData);
+    
 
     useEffect( () => {
         service.getPosts()
@@ -14,15 +17,14 @@ function MyPosts() {
             if(posts){
                 setPosts(posts.documents);
                 setLoading(false);
+                // console.log(posts);
             }
         } )
-        .catch( errpr => {
+        .catch( error => {
             console.log(error);
         } )
     }, [] )
 
-    const userData = useSelector((state) => state.auth.userData);
-    
 
   return ( loading? 
   ( 
@@ -31,13 +33,18 @@ function MyPosts() {
     <div className='w-full min-h-screen py-8'>
             <Container>
                 <div className='flex flex-wrap'>
-                    {posts
-                    .filter( post => post?.userid === userData?.$id   )
-                    .map((post) => (
+                    {posts?.filter( post => {
+                        console.log("Comparing", post?.userid.toString(), userData?.$id.toString());
+                        return post?.userid.toString() === userData?.$id.toString() ;
+                        
+                    })
+                    .map( post => {
+                        return (
                         <div key={post?.$id} className='p-2 w-full sm:w-1/2 md:w-1/3 lg:w-1/4'>
                             <PostCard {...post} />
                         </div>
-                    ))}
+                    );
+                    })}
                 </div>
                 </Container>
         </div>

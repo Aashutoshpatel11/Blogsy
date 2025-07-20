@@ -7,20 +7,20 @@ import { formatDistanceToNow } from 'date-fns';
 import parse from "html-react-parser";
 
 
-function PostCard(post) {
-  const[imageURL, setImageURL] = useState("");
+function PostCard({$id,title, featured_image, tagline, username, $createdAt }) {
+  const[imageURL, setImageURL] = useState(null);
   
 
   useEffect( () => {  
-    service.getFilePreview(post.featured_image)
+    service.getFilePreview(featured_image)
     .then( (res) => setImageURL(res) )
     .catch( error => {
       console.log(error);
     })
-  }, [post.featured_image, service] )
+  }, [featured_image, service] )
 
   return (
-      <Link to={`/post/${post.$id}`} >  
+      <Link to={`/post/${$id}`} >  
         <SpotlightCard className="custom-spotlight-card bg-opacity-25" spotlightColor="rgba(0, 255, 255, 0.2)">
           <div className='w-full text-black/70'>
               <div className='w-full justify-center mb-4'>
@@ -30,15 +30,15 @@ function PostCard(post) {
               </div>
               <h2
               className='text-sm sm:text-lg px-4 py-2 font-bold text-black/60'
-              >{post.title}</h2>
-              <p className='px-4 py-2 text-xs text-black/50 ' >{post?.tagline?.substring(0,250).trim()}</p>
+              >{title}</h2>
+              <p className='px-4 py-2 text-xs text-black/50 ' >{tagline?.substring(0,250).trim()}</p>
               <div className='flex px-4 py-2 items-center font-medium text-xs sm:text-sm' >
                 <div className='bg-blue-300 rounded-full w-10 h-10 mr-4 flex justify-center items-center text-black/50 font-semibold text-2xl font-mono bg-gradient-to-r from-[#e0aef8]  to-[#8cacf6]' >
-                  {post?.username?.[0]?.toUpperCase()}
+                  {username?.[0]?.toUpperCase()}
                 </div>
                 <div>
-                  <div className='font-semibold' >{post.username}</div>
-                  <div className='text-black/30'>{formatDistanceToNow(new Date(post.$createdAt), { addSuffix: true })}</div>
+                  <div className='font-semibold' >{username}</div>
+                  <div className='text-black/30'>{formatDistanceToNow(new Date($createdAt), { addSuffix: true })}</div>
                 </div>
               </div>
           </div>
