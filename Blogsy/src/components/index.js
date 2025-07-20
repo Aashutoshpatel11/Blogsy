@@ -11,6 +11,7 @@ import RTE from "./RTE";
 import PostForm from "./post-form/PostForm";
 import AuthLayout from "../components/AuthLayout"
 import Login from "../components/Login"
+import Loading from "./Loading"
 
 export {
     Header,
@@ -25,5 +26,6 @@ export {
     RTE,
     PostForm,
     AuthLayout,
-    Login
+    Login,
+    Loading
 }

@@ -14,7 +14,8 @@ import Signup from './components/pages/Signup.jsx'
 import EditPost from "./components/pages/EditPost.jsx";
 import Post from "./components/pages/Post.jsx";
 import MyPosts from "./components/pages/MyPosts.jsx";
-import Profile from './components/pages/Profile.jsx'
+import Profile from './components/pages/Profile.jsx';
+import Generate_With_AI from './components/pages/Generate_With_AI.jsx'
 
 const router = createBrowserRouter([
   {
@@ -78,6 +79,15 @@ const router = createBrowserRouter([
                 <AuthLayout authentication>
                     {""}
                     <Profile />
+                </AuthLayout>
+            )
+        },
+        {
+            path: "/generate_with_ai",
+            element: (
+                <AuthLayout authentication >
+                    {""}
+                    <Generate_With_AI/>
                 </AuthLayout>
             )
         }

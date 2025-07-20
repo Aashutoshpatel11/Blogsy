@@ -8,6 +8,7 @@ import Header from "./components/Header/Header"
 import Footer from "./components/Footer/Footer"
 import { Outlet } from 'react-router-dom';
 import Threads from './components/Animation/Threads';
+import { Loading } from './components/index';
 
 function App() {
   const [loading, setLoading] = useState(true)
@@ -27,26 +28,20 @@ function App() {
 
   return !loading ? (
       <div className='min-h-screen w-full flex flex-wrap bg-transparent ' >
-        {/* <Aurora
-          colorStops={["#3A29FF", "#FF94B4", "#FF3232"]}
-          blend={0.5}
-          amplitude={1.0}
-          speed={0.5}
-        /> */}
-        <Threads
-            amplitude={1}
-            distance={0}
-            enableMouseInteraction={true}
-          />
-        <div className='w-full block ' >
-          <Header/>
-          <main>
-            <Outlet/>
-          </main>
-          <Footer/>
-        </div>
+          <Threads
+                amplitude={1}
+                distance={0}
+                enableMouseInteraction={true}
+                />
+            <div className='w-full block ' >
+                <Header/>
+                <main>
+                    <Outlet/>
+                </main>
+                <Footer/>
+          </div>
       </div>
-  ) : null
+  ) : <Loading/>
 
 }
 

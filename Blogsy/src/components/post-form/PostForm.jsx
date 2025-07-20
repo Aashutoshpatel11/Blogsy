@@ -1,5 +1,5 @@
 
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Button, Input, RTE, Select } from "..";
 import appwriteService from "../../appwrite/config";
@@ -8,6 +8,12 @@ import { useSelector } from "react-redux";
 import service from "../../appwrite/config";
 
 export default function PostForm({ post }) {
+
+    const[isNewPost, setIsNewPost] = useState(true);
+    useEffect( () => {
+        if(post) setIsNewPost(false);
+    }, [post] )
+
     const { register, handleSubmit, watch, setValue, control, getValues } = useForm({
         defaultValues: {
             title: post?.title || "",
@@ -20,15 +26,11 @@ export default function PostForm({ post }) {
 
     const navigate = useNavigate();
     const userData = useSelector((state) => state.auth.userData);
-    console.log(userData);
     
 
     const submit = async (data) => {
-        if (post) {
+        if (post?.$id) {
             const file = data.image[0] ? await appwriteService.uploadFile(data.image[0]) : null;
-            console.log(file);
-            
-
             if (file) {
                 appwriteService.deleteFile(post.featured_image);
             }
@@ -76,6 +78,10 @@ export default function PostForm({ post }) {
 
         return () => subscription.unsubscribe();
     }, [watch, slugTransform, setValue]);
+
+    const handleGenerateWithAI = () => {
+        navigate("/generate_with_ai");
+    }
 
     return (
         <form onSubmit={handleSubmit(submit)} className=" flex flex-col md:flex-row h-full flex-wrap py-20 mb-10 text-xs sm:text-base text-black backdrop-blur-md ">
@@ -128,7 +134,13 @@ export default function PostForm({ post }) {
                     {...register("status", { required: true })}
                 />
                 </div>
-                <div className="b-0" >
+                <div className="b-0 flex justify-between w-full " >
+                    {isNewPost && (<button 
+                        onClick={ () => handleGenerateWithAI()}
+                        type="click"  
+                        className=" bg-blue-500 hover:bg-blue-400 hover:font-semibold text-white rounded-xl px-8 py-1">
+                        ✨Generate with AI
+                    </button>)}
                     <Button type="submit" bgColor={post ? "bg-green-500" : undefined} className=" bg-green-500 hover:bg-green-400 hover:font-semibold text-white rounded-xl px-8 py-1">
                     {post ? "Update" : "Submit"}
                     </Button>

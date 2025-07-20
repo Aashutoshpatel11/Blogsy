@@ -19,9 +19,6 @@ function PostCard(post) {
     })
   }, [post.featured_image, service] )
 
-  
-
-  
   return (
       <Link to={`/post/${post.$id}`} >  
         <SpotlightCard className="custom-spotlight-card bg-opacity-25" spotlightColor="rgba(0, 255, 255, 0.2)">

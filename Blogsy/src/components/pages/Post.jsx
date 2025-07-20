@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import service from "../../appwrite/config";
-import { Button, Container } from "../index";
+import { Button, Container, Loading } from "../index";
 import parse from "html-react-parser";
 import { useSelector } from "react-redux";
 import SpotlightCard from "../Animation/SpotLightCard";
@@ -10,6 +10,7 @@ export default function Post() {
     const [post, setPost] = useState(null);
     const [imageURL, setImageURL] = useState(null);
     const {slug} = useParams();
+    const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
     const userData = useSelector((state) => state.auth.userData);
     const isAuthor = post && userData ? post.userid === userData.$id : false;
@@ -21,6 +22,7 @@ export default function Post() {
             .then((post) => {
                 if (post) {
                     setPost(post)
+                    setLoading(false)
                 }else navigate("/");
             });
         } else navigate("/");
@@ -47,7 +49,7 @@ export default function Post() {
     };
 
 
-    return post ? (
+    return !loading ? (
         // <SpotlightCard className="custom-spotlight-card backdrop-blur-md  bg-transparent" spotlightColor="rgba(140, 98, 55, .3)">
             <div className="py-8 text-black backdrop-blur-md mt-20  min-h-screen flex flex-col justify-between">
                     <div>
@@ -90,5 +92,5 @@ export default function Post() {
                     </div>
             </div>
         // </SpotlightCard>
-    ) : null;
+    ) : <Loading />;
 }

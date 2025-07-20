@@ -21,7 +21,7 @@ function Footer() {
                     </div>
                     <div className="w-full p-6 md:w-1/2 lg:w-2/12 ">
                         <div className="h-full">
-                            <h3 className="tracking-px mb-9  text-xs font-semibold uppercase hover:underline hover:text-blue-500 underline-offset-1">
+                            <h3 className="tracking-px mb-9  text-xs font-semibold uppercase   underline-offset-1">
                                 Company
                             </h3>
                             <ul>
@@ -62,7 +62,7 @@ function Footer() {
                     </div>
                     <div className="w-full p-6 md:w-1/2 lg:w-2/12">
                         <div className="h-full">
-                            <h3 className="tracking-px mb-9  text-xs font-semibold uppercase hover:underline hover:text-blue-500 underline-offset-1">
+                            <h3 className="tracking-px mb-9  text-xs font-semibold uppercase   underline-offset-1">
                                 Support
                             </h3>
                             <ul>
@@ -103,7 +103,7 @@ function Footer() {
                     </div>
                     <div className="w-full p-6 md:w-1/2 lg:w-2/12">
                         <div className="h-full">
-                            <h3 className="tracking-px mb-9  text-xs font-semibold uppercase hover:underline hover:text-blue-500 underline-offset-1">
+                            <h3 className="tracking-px mb-9  text-xs font-semibold uppercase   underline-offset-1">
                                 Legals
                             </h3>
                             <ul>
@@ -136,7 +136,7 @@ function Footer() {
                     </div>
                     <div className="w-full p-6 md:w-1/2 lg:w-2/12">
                         <div className="h-full">
-                            <h3 className="tracking-px mb-9  text-xs font-semibold uppercase hover:underline hover:text-blue-500 underline-offset-1">
+                            <h3 className="tracking-px mb-9  text-xs font-semibold uppercase   underline-offset-1">
                                 Connect
                             </h3>
                             <ul>

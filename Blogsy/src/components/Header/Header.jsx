@@ -22,7 +22,7 @@ const Header = function () {
     }, [authStatus] )
 
     const handleOnClick = () => {
-        navigate(`/profile/${user.email}`);
+        navigate(`/profile/${user.$id}`);
     }
 
     let navItems = [
@@ -82,7 +82,7 @@ const Header = function () {
                         {authStatus && (
                             <button 
                             onClick={ () => handleOnClick() }
-                            className='bg-blue-300 rounded-full w-10 h-10 ml-4 flex justify-center items-center text-black/50 font-semibold text-2xl font-mono bg-gradient-to-r from-[#e0aef8]  to-[#8cacf6]' >
+                            className='bg-white  rounded-full w-10 h-10 ml-4 flex justify-center items-center text-black/40 font-semibold text-2xl font-mono border-2 border-t-red-500 border-r-blue-500 border-b-green-500 border-l-yellow-500' >
                             {user?.name?.[0]?.toUpperCase()}
                             </button>
                         )}
