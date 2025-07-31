@@ -106,24 +106,26 @@ function Login() {
     const dispatch = useDispatch()
     const { register, handleSubmit } = useForm()
 
-    const handleLogin = async (data) => {
+    const handleLogin = (data) => {
         setError("")
         setLoading(true)
 
-        try {
-            const session = await authService.login(data)
-            if (session) {
-                const userData = await authService.getCurrentUser()
-                if (userData) {
-                    await dispatch(storeLogin(userData))
-                    navigate('/')
+        setTimeout( async () => {
+            try {
+                const session = await authService.login(data)
+                if (session) {
+                    const userData = await authService.getCurrentUser()
+                    if (userData) {
+                        await dispatch(storeLogin(userData))
+                        navigate('/')
+                    }
                 }
+            } catch (error) {
+                setError(error?.message || "Something went wrong during login.")
+            } finally {
+                setLoading(false)
             }
-        } catch (error) {
-            setError(error?.message || "Something went wrong during login.")
-        } finally {
-            setLoading(false)
-        }
+        }, 300);
     }
 
     return (
