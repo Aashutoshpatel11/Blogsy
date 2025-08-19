@@ -6,7 +6,7 @@ function Footer() {
   return (
     <section className="relative overflow-hidden py-10 rounded-t-3xl text-black/60 bg-blue-300 backdrop-blur-2xl bg-opacity-10 border-t-4">
             <div className="relative z-10 mx-auto max-w-7xl px-4">
-                <div className="-m-6 flex flex-wrap">
+                <div className=" flex flex-wrap justify-evenly">
                     <div className="w-full p-6 md:w-1/2 lg:w-4/12">
                         <div className="flex h-full flex-col justify-between">
                             <div className="mb-4 inline-flex items-center">
@@ -19,7 +19,7 @@ function Footer() {
                             </div>
                         </div>
                     </div>
-                    <div className="w-full p-6 md:w-1/2 lg:w-2/12 ">
+                    {/* <div className="w-full p-6 md:w-1/2 lg:w-2/12 ">
                         <div className="h-full">
                             <h3 className="tracking-px mb-9  text-xs font-semibold uppercase   underline-offset-1">
                                 Company
@@ -133,7 +133,7 @@ function Footer() {
                                 </li>
                             </ul>
                         </div>
-                    </div>
+                    </div> */}
                     <div className="w-full p-6 md:w-1/2 lg:w-2/12">
                         <div className="h-full">
                             <h3 className="tracking-px mb-9  text-xs font-semibold uppercase   underline-offset-1">
