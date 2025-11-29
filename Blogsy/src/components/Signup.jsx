@@ -36,6 +36,7 @@ function Signup() {
                 }
             }
         } catch (error) {
+            setLoading(false);
             setError(error)
             console.log(error);
         }
