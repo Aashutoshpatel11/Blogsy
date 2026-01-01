@@ -1,15 +1,31 @@
 import React, { useState } from "react";
-import OpenAI from "../../OpenAI/OpenAI";
+import { AI } from "../../OpenAI/OpenAI";
 import SpotlightCard from './../Animation/SpotLightCard';
 
 function Generate_With_AI(){
     const[content, setContent] = useState("");
     const[topic, setTopic] = useState("");
+    const[isLoading, setIsLoading] = useState(false);
+    const[isDisabled, setIsDisabled] = useState(true)
+
 
     
-    const handleSubmit = (e) => {
+    const handleSubmit = async(e) => {
         e.preventDefault();
-        const response = OpenAI.generate_response(topic);
+        setIsLoading(true)
+        setIsDisabled(true)
+        try {
+            const response = await AI(topic);
+            setContent(response);
+            setTopic("");
+            setIsLoading(false)
+            setIsDisabled(false)
+        } catch (error) {
+            setIsDisabled(true)
+            setIsLoading(false)
+            setTopic("");
+            throw(error.message)
+        }
     }
 
     return (
@@ -17,7 +33,7 @@ function Generate_With_AI(){
             <SpotlightCard className="custom-spotlight-card bg-opacity-25 border-0 h-full w-full" spotlightColor="rgba(0, 0, 255, 0.1)">
             <div className="h-full w-full flex flex-col items-center" >
                 <textarea
-                className="animate-pulse p-14 pb-40 text-left text-sm resize-none w-full bg-transparent text-black/50 backdrop-blur-3xl border-2 border-b/50 h-full rounded-3xl -z-1 focus:outline-none focus:ring-0"
+                className="animate-pulse p-14 pb-40 text-left text-sm resize-none w-full bg-transparent text-black backdrop-blur-3xl border-2 border-b/50 h-full rounded-3xl -z-1 focus:outline-none focus:ring-0"
                 type="text" 
                 readOnly={true}
                 value={content||"Under Our AI-powered writing assistant is currently under development. Very soon, this space will help you generate smart content ideas, expand your thoughts, and even draft full blog posts with just a few prompts. We're actively building and testing features to make your writing process faster, easier, and more creative. Stay tuned — powerful AI tools are coming your way soon!"} />
@@ -34,13 +50,15 @@ function Generate_With_AI(){
                         onChange={ (e) => setTopic(e.target.value) }
                         />
                         <button
-                        className="py-3 px-7 text-white hover:font-semibold text-xl bg-blue-400 hover:bg-blue-500 rounded-full"
+                        disabled={isLoading}
+                        className="py-3 px-7 text-white hover:font-semibold text-xl bg-blue-600 hover:bg-blue-500 rounded-full"
                         type="submit"
-                        >✨</button>
+                        >{isLoading? "Generating" : "✨"}</button>
                     </div>
                 </form>
             </div>
             </SpotlightCard>
+            {/* <button1 */}
         </div>
     )
 }
